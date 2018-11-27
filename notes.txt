@@ -5,5 +5,5 @@ sunglasses/Ballcap => clear skies
 T-Shirt/Shorts => Low above 60
 Sweater => low between 40 and 55
 Jacket => High between 20 and 40
-Knitcap/Gloves => below freezing (32)
+Knitcap/Gloves => freezing or below (32)
 
