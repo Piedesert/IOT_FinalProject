@@ -42,16 +42,16 @@ int setClothes(String value) {
 
 void setClothesFromHook(const char *event, const char *value) {
   String clothes = String(value).trim();
-  Serial.println("Received what-to-wear response");
+  Serial.println("Received what2wear response");
   hookResponseReceived = true;
   setClothes(clothes);
 }
 
 void getClothesFromHook() {
-  Particle.subscribe("hook-response/what-to-wear", setClothesFromHook, MY_DEVICES);
+  Particle.subscribe("hook-response/what2wear", setClothesFromHook, MY_DEVICES);
   if(waitFor(Particle.connected, CONNECT_DELAY_SECS * 1000)) {
-    Serial.println("Published what-to-wear event");
-    Particle.publish("what-to-wear", PRIVATE);
+    Serial.println("Published what2wear event");
+    Particle.publish("what2wear", PUBLIC);
   } else {
     Serial.println("Couldn't connect => Go to sleep");
     goToSleep();
