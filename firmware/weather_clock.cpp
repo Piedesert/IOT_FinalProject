@@ -51,7 +51,7 @@ void getClothesFromHook() {
   Particle.subscribe("hook-response/what2wear", setClothesFromHook, MY_DEVICES);
   if(waitFor(Particle.connected, CONNECT_DELAY_SECS * 1000)) {
     Serial.println("Published what2wear event");
-    Particle.publish("what2wear", PUBLIC);
+    Particle.publish("what2wear", PRIVATE);
   } else {
     Serial.println("Couldn't connect => Go to sleep");
     goToSleep();
