@@ -34,15 +34,15 @@ float humidity, temperature, tempF, dewPoint;
 void setup() {
   Serial.begin(300);
 
+  Particle.variable("iotFinalHum", );
+  Particle.variable("iotFinalTempC", );
+  Particle.variable("iotFinalTempF", );
+
   // Displays the first item in the buffer and clears everything
   oled.begin();
   oled.clear(ALL);
   oled.display();
   delay(1000);
-
-  Particle.variable("finalProjectHumidity", humidity);
-  Particle.variable("finalProjectTemperature", temperature);
-
 }
 
 
@@ -102,10 +102,6 @@ void getTempAndHum(){
   tempF = ((temperature * 1.8) + 32.0);
   // Dont actually use dew point
   dewPoint = dht.getDewPoint();
-
-  Particle.publish("pushedNWMSUFinalProjectHumidity", String(finalProjectHumidity));
-  Particle.publish("pushedNWMSUFinalProjectTemperature", String(finalProjectTemperature));
-
 }
 
 
