@@ -8,7 +8,6 @@ Pointer::Pointer(int pwmPin, int powerPin)
 
 void Pointer::moveToAngle(int angle) {
   {
-    CriticalSection cs;
     if(positionDesired == angle) {
       return;
     }
