@@ -1,10 +1,14 @@
 /*
  *
  */
+#include <cstdlib>
 
 Servo microServo;
 
 int position = 0;
+double reqData;
+
+
 
 // Runs once
 void setup()
@@ -20,7 +24,23 @@ void setup()
 // Runs looped after setup
 void loop()
 {
-  delay(3000);
+  Particle.subscribe("pushedNWMSUFinalProjectTemperature", myHandler);
+  Serial.print("Local data: ");
+  Serial.println(reqData);
+  delay(30000);
+  setClothes();
+}
+
+void myHandler(const char *event, const char *data)
+{
+  Serial.print("data: ");
+  if (data){
+    reqData = std::atof(data);
+    Serial.println(data);
+  }
+  else{
+    Serial.println("NULL");
+  }
 }
 
 void setClothes() {
@@ -35,21 +55,22 @@ void setClothes() {
   //     delay(100);
   // }
   //
-  if (reqData <= 0) {
-      microServo.write(180);
-  } else if (reqData > 0 && reqData <= 10) {
-      microServo.write(120);
-  } else if (reqData > 10 && reqData <= 15) {
-      microServo.write(90);
-  } else if (reqData > 15 && reqData <= 25) {
-      microServo.write(60);
-  } else if (reqData > 25 && reqData <= 32) {
-      microServo.write(30);
-  } else {
-      microServo.write(0);
-  }
-  // position = (reqData/37.7) * 180.0;
-  // Serial.println(position);
-  // microServo.write(position);
+  // if (reqData <= 0) {
+  //     microServo.write(180);
+  // } else if (reqData > 0 && reqData <= 10) {
+  //     microServo.write(120);
+  // } else if (reqData > 10 && reqData <= 15) {
+  //     microServo.write(90);
+  // } else if (reqData > 15 && reqData <= 25) {
+  //     microServo.write(60);
+  // } else if (reqData > 25 && reqData <= 32) {
+  //     microServo.write(30);
+  // } else {
+  //     microServo.write(0);
+  // }
+  position = (reqData/37.7) * 180.0;
+  Serial.print("Pointer Position: ");
+  Serial.println(position);
+  microServo.write(position);
   delay(5000);
 }
