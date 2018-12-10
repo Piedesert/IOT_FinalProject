@@ -48,10 +48,10 @@ void setClothesFromHook(const char *event, const char *value) {
 }
 
 void getClothesFromHook() {
-  Particle.subscribe("hook-response/what2wear", setClothesFromHook, MY_DEVICES);
+  Particle.subscribe("hook-response/what2wear", setClothesFromHook);
   if(waitFor(Particle.connected, CONNECT_DELAY_SECS * 1000)) {
     Serial.println("Published what2wear event");
-    Particle.publish("what2wear", PRIVATE);
+    Particle.publish("what2wear", PUBLIC);
   } else {
     Serial.println("Couldn't connect => Go to sleep");
     goToSleep();
@@ -94,4 +94,3 @@ void loop() {
 void goToSleep() {
   System.sleep(SLEEP_MODE_DEEP, SLEEP_TIME_SECS);
 }
-
