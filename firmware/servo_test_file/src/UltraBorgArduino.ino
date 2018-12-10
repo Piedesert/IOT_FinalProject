@@ -41,7 +41,6 @@ void setup()
 
     // Set pointer to suggested clothes
     setClothes();
-
 }
 
 // Runs looped after setup
@@ -51,9 +50,6 @@ void loop()
     Serial.println("Done waiting => Go to sleep"); delay(200);
     goToSleep();
   }
-
-
-
 }
 
 void setClothes() {
@@ -90,10 +86,6 @@ unsigned long timeSinceLastResponse() {
 }
 
 bool readyToSleep() {
-  if(1) {
-    return true;
-  }
-
   return timeSinceLastResponse() > SLEEP_DELAY_SECS * 1000;
 }
 
