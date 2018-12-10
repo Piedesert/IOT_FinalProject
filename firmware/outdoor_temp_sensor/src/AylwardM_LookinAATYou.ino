@@ -39,6 +39,10 @@ void setup() {
   oled.clear(ALL);
   oled.display();
   delay(1000);
+
+  Particle.variable("finalProjectHumidity", humidity);
+  Particle.variable("finalProjectTemperature", temperature);
+
 }
 
 
@@ -98,6 +102,10 @@ void getTempAndHum(){
   tempF = ((temperature * 1.8) + 32.0);
   // Dont actually use dew point
   dewPoint = dht.getDewPoint();
+
+  Particle.publish("pushedNWMSUFinalProjectHumidity", String(finalProjectHumidity));
+  Particle.publish("pushedNWMSUFinalProjectTemperature", String(finalProjectTemperature));
+
 }
 
 
