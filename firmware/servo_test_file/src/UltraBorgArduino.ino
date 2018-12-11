@@ -50,11 +50,11 @@ void setClothes() {
   Serial.print("Pointer Position: ");
   Serial.println(position);
   microServo.write(position);
-  delay(1000);
+  delay(2000);
   // for (size_t position = 0; position < 180; position++) {
   //     microServo.write(position);
   //     Serial.printf("position: %d" + position);
-  //     delay(100);
+  //     delay(1000);
   // }
   // for (size_t position = 180; position >= 1; position--) {
   //     microServo.write(position);
