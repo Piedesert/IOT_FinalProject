@@ -17,6 +17,8 @@ void setup()
     Serial.begin(9600);
     // Connecting the servo to pin D0 and get it to reset back to 0
     microServo.attach(D0);
+    microServo.write(180);
+    delay(1000);
 }
 
 
@@ -27,7 +29,7 @@ void loop()
   Particle.subscribe("pushedNWMSUFinalProjectTemperature", myHandler);
   Serial.print("Local data: ");
   Serial.println(reqData);
-  delay(30000);
+  delay(2000);
   setClothes();
 }
 
@@ -44,6 +46,11 @@ void myHandler(const char *event, const char *data)
 }
 
 void setClothes() {
+  position = (reqData/37.7) * 180.0;
+  Serial.print("Pointer Position: ");
+  Serial.println(position);
+  microServo.write(position);
+  delay(1000);
   // for (size_t position = 0; position < 180; position++) {
   //     microServo.write(position);
   //     Serial.printf("position: %d" + position);
@@ -68,9 +75,4 @@ void setClothes() {
   // } else {
   //     microServo.write(0);
   // }
-  position = (reqData/37.7) * 180.0;
-  Serial.print("Pointer Position: ");
-  Serial.println(position);
-  microServo.write(position);
-  delay(5000);
 }
