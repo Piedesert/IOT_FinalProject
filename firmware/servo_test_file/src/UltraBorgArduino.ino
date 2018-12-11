@@ -18,7 +18,7 @@ void setup()
     // Connecting the servo to pin D0 and get it to reset back to 0
     microServo.attach(D0);
     microServo.write(180);
-    delay(1000);
+    delay(2000);
 }
 
 
